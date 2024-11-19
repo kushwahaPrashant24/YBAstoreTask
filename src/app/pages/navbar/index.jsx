@@ -7,7 +7,7 @@ function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Dropdown menu
 
   return (
-    <nav className=" text-white">
+    <nav className="text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -47,29 +47,10 @@ function Navbar() {
 
           {/* Links and Dropdown */}
           <div className="hidden md:flex space-x-6 items-center">
-            <Link href="/">
-             
-                Fav Creator
-             
-            </Link>
-
-            <Link href="/about">
-              
-                Merchandise
-             
-            </Link>
-
-            <Link href="/contact">
-              
-                Brand
-              
-            </Link>
-
-            <Link href="/digital">
-            
-                Digital
-            
-            </Link>
+            <Link href="/">Fav Creator</Link>
+            <Link href="/about">Merchandise</Link>
+            <Link href="/contact">Brand</Link>
+            <Link href="/digital">Digital</Link>
 
             {/* Dropdown Button */}
             <div className="relative">
@@ -77,6 +58,7 @@ function Navbar() {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="h-10 w-32 bg-gray-700 border border-gray-600 rounded-md shadow-md flex items-center justify-between px-4"
                 aria-label="Open Dropdown"
+                aria-expanded={isDropdownOpen ? "true" : "false"}
               >
                 {/* Contact Icon */}
                 <svg
@@ -152,15 +134,15 @@ function Navbar() {
                     </svg>
                   </button>
                   <div className="flex flex-col p-2 space-y-2 text-gray-300">
-                    <a href="/profile" className="hover:text-blue-400">
+                    <Link href="/profile" className="hover:text-blue-400">
                       Profile
-                    </a>
-                    <a href="/dashboard" className="hover:text-blue-400">
+                    </Link>
+                    <Link href="/dashboard" className="hover:text-blue-400">
                       Dashboard
-                    </a>
-                    <a href="/mystore" className="hover:text-blue-400">
+                    </Link>
+                    <Link href="/mystore" className="hover:text-blue-400">
                       My Store
-                    </a>
+                    </Link>
                   </div>
                 </div>
               )}
@@ -221,7 +203,7 @@ function Navbar() {
               <div className="w-16 h-16 rounded-full bg-gray-300 overflow-hidden shadow-lg">
                 <img
                   src="https://images.pexels.com/photos/3680219/pexels-photo-3680219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  alt="Profile"
+                  alt="Profile image of Prashant Kushwaha"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -242,10 +224,10 @@ function Navbar() {
                 Address
               </button>
               <button className="w-full text-left px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600 transition">
-                Contact
+                Dashboard
               </button>
               <button className="w-full text-left px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600 transition">
-                About Us
+                My Store
               </button>
             </div>
           </div>

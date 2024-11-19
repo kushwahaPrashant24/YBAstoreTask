@@ -1,18 +1,15 @@
 import Image from "next/image";
 import React from "react";
-import Image1 from "../../../../../public/Assets/img1.jpeg"
-import Image2 from "../../../../../public/Assets/img2.jpeg"
-import Image3 from "../../../../../public/Assets/img3.jpeg"
-import Image4 from "../../../../../public/Assets/img4.jpeg"
-import Image5 from "../../../../../public/Assets/img5.jpeg"
-import Image6 from "../../../../../public/Assets/img6.jpeg"
-
-
-
+import Image1 from "../../../../../public/Assets/img1.jpeg";
+import Image2 from "../../../../../public/Assets/img2.jpeg";
+import Image3 from "../../../../../public/Assets/img3.jpeg";
+import Image4 from "../../../../../public/Assets/img4.jpeg";
+import Image5 from "../../../../../public/Assets/img5.jpeg";
+import Image6 from "../../../../../public/Assets/img6.jpeg";
 
 function Starter() {
   return (
-    <div className="  text-white flex justify-center items-center">
+    <div className="text-white flex justify-center items-center">
       {/* Container */}
       <div className="max-w-[1200px] mx-auto p-6 sm:p-10 flex flex-col lg:flex-row gap-10">
         {/* Left Section */}
@@ -36,8 +33,8 @@ function Starter() {
           {/* Tagline */}
           <div className="mt-6">
             <p className="text-lg sm:text-xl text-gray-300">
-              "Unleash Your Influence: Sell Itineraries, Build Your Brand, Create
-              Merch, and Share Content  All in One Hub."
+              &quot;Unleash Your Influence: Sell Itineraries, Build Your Brand, Create
+              Merch, and Share Content All in One Hub.&quot;
             </p>
           </div>
 

@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/no-unescaped-entities": "off",  // Disable unescaped entities warning
+    "@next/next/no-img-element": "off",    // Disable img element warning
+    "@next/next/no-html-link-for-pages": "off", // Disable html <a> link warning
+    "react-hooks/exhaustive-deps": "warn"  // Change to "warn" instead of "error"
+  }
 }

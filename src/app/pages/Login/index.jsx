@@ -1,12 +1,14 @@
 "use client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod"; // Zod for schema validation
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Navbar from "../navbar";
-import Login from "../../../../public/Assets/Login.png";
+import LoginImage from "../../../../public/Assets/Login.png";
 import GoogleLogo from "../../../../public/Assets/googlelogo.png";
+import Link from 'next/link';
 
 // Zod Schema for validation
 const loginSchema = z.object({
@@ -19,6 +21,7 @@ const loginSchema = z.object({
 
 export default function Index() {
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // React Hook Form setup
   const {
@@ -26,25 +29,32 @@ export default function Index() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(loginSchema), // Resolving with Zod schema
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   // Mock authentication function
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
     console.log("Login Successful with data:", data);
     alert("Login Successful!");
     router.push("/Home"); // Redirect to home page
+    setIsSubmitting(false); // Reset after submission
   };
 
   return (
     <div className="flex flex-col justify-center items-center gap-[36px]">
       <Navbar />
-      <div className="h-auto w-[1200px] flex flex-col lg:flex-row justify-between items-center bg-black p-10">
+      <div className="h-auto w-full lg:w-[1200px] flex flex-col lg:flex-row justify-between items-center bg-black p-10">
+        
         {/* Login Image: Hidden on mobile devices */}
         <div className="hidden lg:block w-full lg:w-[584px] h-auto flex justify-center lg:justify-start">
           <Image
-            src={Login}
-            alt="Image"
+            src={LoginImage}
+            alt="Login"
             className="w-full lg:w-[584px] h-auto lg:h-[554.81px] object-contain"
           />
         </div>
@@ -55,11 +65,11 @@ export default function Index() {
           className="w-full lg:w-[416px] h-auto lg:h-[553px] rounded-[16px] flex flex-col justify-center items-center gap-[36px] px-4"
         >
           <center>
-            <h1 className="text-[32px] lg:text-[40px] font-bold">Login</h1>
+            <h1 className="text-[32px] lg:text-[40px] font-bold text-white">Login</h1>
           </center>
 
           {/* Google Sign-in */}
-          <div className="w-full lg:w-[344px] max-h-[46px] border-2 px-[12px] py-[8px] rounded-[8px] flex justify-center items-center gap-[10px]">
+          <div className="w-full lg:w-[344px] max-h-[46px] border-2 px-[12px] py-[8px] rounded-[8px] flex justify-center items-center gap-[10px] cursor-pointer">
             <div className="w-[215.2px] h-[22px] flex justify-center items-center gap-[4px]">
               <Image
                 src={GoogleLogo}
@@ -85,7 +95,7 @@ export default function Index() {
               placeholder="Email"
               className="w-full h-[46px] text-[14px] font-medium bg-transparent border-b placeholder-gray-400 focus:outline-none text-white"
             />
-            <p className="text-red-500 text-[12px]">{errors.email?.message}</p>
+            {errors.email && <p className="text-red-500 text-[12px]">{errors.email?.message}</p>}
           </div>
 
           {/* Password Input */}
@@ -96,25 +106,26 @@ export default function Index() {
               placeholder="Password"
               className="w-full h-[46px] text-[14px] font-medium bg-transparent border-b placeholder-gray-400 focus:outline-none text-white"
             />
-            <p className="text-red-500 text-[12px]">
-              {errors.password?.message}
-            </p>
+            {errors.password && <p className="text-red-500 text-[12px]">{errors.password?.message}</p>}
           </div>
 
           {/* Login Button */}
           <button
             type="submit"
-            className="w-[142px] h-auto p-[12px_16px] rounded-[12px] border-2 border-slate-100 font-medium text-[14px] hover:scale-105 transition-all mt-4"
+            disabled={isSubmitting}
+            className="w-[142px] h-auto p-[12px_16px] rounded-[12px] border-2 border-slate-100 font-medium text-[14px] hover:scale-105 transition-all mt-4 disabled:opacity-50"
           >
-            Login
+            {isSubmitting ? "Logging in..." : "Login"}
           </button>
 
           {/* Sign Up Link */}
           <div className="w-full lg:w-[284px] h-[22px] flex items-center justify-center mt-3">
             <span className="text-[15px]">Don’t have an account?</span>
-            <span className="text-green-500 text-[15px] cursor-pointer hover:underline">
-              Get Started
-            </span>
+            <Link href="/signup">
+              <span className="text-green-500 text-[15px] cursor-pointer hover:underline">
+                Get Started
+              </span>
+            </Link>
           </div>
         </form>
       </div>
