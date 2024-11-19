@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image1 from "@/../public/Assets/Darjeeling.jpeg";
 import Image2 from "@/../public/Assets/Masurri.jpeg";
 import Image3 from "@/../public/Assets/Delhi.png";
-
 import Image4 from "@/../public/Assets/img3.jpeg";
 import Image5 from "@/../public/Assets/img2.jpeg";
 import Image6 from "@/../public/Assets/img6.jpeg";
@@ -19,7 +18,7 @@ const Card = () => {
       img: Image1,
       place: "Darjeeling Itinerary",
       state: "West Bengal",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
     {
       id: 2,
@@ -27,15 +26,16 @@ const Card = () => {
       img: Image2,
       place: "Munnar Itinerary",
       state: "Kerala",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
+
     {
       id: 3,
       title: "Card 3",
       img: Image3,
       place: "Delhi Itinerary",
       state: "Delhi",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
     {
       id: 4,
@@ -43,7 +43,7 @@ const Card = () => {
       img: Image4,
       place: "Delhi Itinerary",
       state: "Delhi",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
     {
       id: 5,
@@ -51,7 +51,7 @@ const Card = () => {
       img: Image5,
       place: "Delhi Itinerary",
       state: "Delhi",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
     {
       id: 6,
@@ -59,25 +59,25 @@ const Card = () => {
       img: Image6,
       place: "Delhi Itinerary",
       state: "Delhi",
-      influencer: "Samira Hadid",
+      infulencer: "Samira Hadid",
     },
   ];
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % cards.length); // Loop through all the cards
+    setCurrentIndex((prev) => (prev + 1) % (cards.length - 3)); // Cycle through cards
   };
 
   // Autoplay functionality
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    },[handleNext], 3000); // Change card every 3 seconds
+    }, 3000); // Change card every 3 seconds
 
     return () => clearInterval(interval); // Clear interval on component unmount
-  }, []); // Empty array ensures the effect runs only once
+  }, []);
 
   return (
-    <div className="relative w-[1200px] h-[480px]">
+    <div className="relative w-[1200px] h-[480px] ">
       {/* Carousel Container */}
       <div className="overflow-hidden">
         {/* Cards Wrapper with transition */}
@@ -110,8 +110,8 @@ const Card = () => {
                     <p className="text-[20px]">{card.place}</p>
                     <p className=" text-[18px] ">{card.state}</p>
                   </div>
-                  <div className="w-[191px] h-[31px] rounded-[16px] bg-white text-black flex items-center justify-center gap-2">
-                    <p className="text-[18px] font-bold">{card.influencer}</p>
+                  <div className="w-[191px] h-[31px] rounded-[16px] bg-white text-black flex  items-center justify-center gap-2">
+                    <p className="text-[18px] font-bold">{card.infulencer}</p>
                     <div className="w-[23px] h-[23px] rounded-full overflow-hidden">
                       <Image
                         src={Image7} // Path to the profile image
